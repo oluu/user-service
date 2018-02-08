@@ -10,6 +10,8 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	fmt.Printf("hello world")
+
 	http.HandleFunc("/", rootHandler)
 	http.ListenAndServe(":8080", nil)
 }

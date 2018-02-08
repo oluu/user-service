@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker tag user-service:latest 698990599346.dkr.ecr.us-east-1.amazonaws.com/user-service
+docker push 698990599346.dkr.ecr.us-east-1.amazonaws.com/user-service

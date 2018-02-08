@@ -12,6 +12,6 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	fmt.Printf("hello world")
 
-	http.HandleFunc("/", rootHandler)
-	http.ListenAndServe(":8080", nil)
+	http.HandleFunc("/user-service", rootHandler)
+	http.ListenAndServe(":3000", nil)
 }

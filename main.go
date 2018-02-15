@@ -1,17 +1,18 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
+
+	"github.com/shinypotato/user-service/data"
+	"github.com/shinypotato/user-service/handlers"
+	"github.com/shinypotato/user-service/service"
 )
 
-func rootHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "hello world")
-}
+const port = ":3000"
 
 func main() {
-	fmt.Printf("hello world")
-
-	http.HandleFunc("/user-service", rootHandler)
-	http.ListenAndServe(":3000", nil)
+	repository := data.InitRepository()
+	userService := service.NewUserService(repository)
+	handlers.RegisterHandlers(userService)
+	http.ListenAndServe(port, nil)
 }

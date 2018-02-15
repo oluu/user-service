@@ -44,3 +44,7 @@
 [[constraint]]
   name = "github.com/gocql/gocql"
   source = "github.com/shinypotato/gocql"
+
+[[constraint]]
+  name="github.com/nsqio/go-nsq"
+  source="github.com/shinypotato/go-nsq"

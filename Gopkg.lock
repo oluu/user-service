@@ -40,6 +40,13 @@
   revision = "e80d13ce29ede4452c43dea11e79b9bc8a15b478"
 
 [[projects]]
+  name = "github.com/nsqio/go-nsq"
+  packages = ["."]
+  revision = "eee57a3ac4174c55924125bb15eeeda8cffb6e6f"
+  source = "github.com/shinypotato/go-nsq"
+  version = "v1.0.7"
+
+[[projects]]
   name = "gopkg.in/inf.v0"
   packages = ["."]
   revision = "3887ee99ecf07df5b447e9b00d9c0b2adaa9f3e4"
@@ -48,6 +55,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "dce25db9e7d0c5954dc379d40fbd31623fd63366359e65bc0bc65f19e340723d"
+  inputs-digest = "040f16c30d700fa36736b9a3cdbd1f35b701fc27fee3c8977ef135708ebfef35"
   solver-name = "gps-cdcl"
   solver-version = 1

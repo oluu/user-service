@@ -1,1 +1,4 @@
 *.swp
+*.http
+app.o
+user-service

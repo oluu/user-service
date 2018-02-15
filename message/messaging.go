@@ -17,9 +17,10 @@ func InitMessaging(topics []string) (*nsq.Producer, []*nsq.Consumer) {
 	for i, topic := range topics {
 		consumers[i], err = nsq.NewConsumer(topic, "default", config)
 		if err != nil {
-			log.Fatal(err)
+			log.Fatal("Failed to create new consumer: ", err)
 		}
-		consumers[i].ChangeMaxInFlight(100)
+		consumers[i].ChangeMaxInFlight(1000)
+		consumers[i].SetLogger(new(log.Logger), nsq.LogLevelError)
 	}
 	return producer, consumers
 }

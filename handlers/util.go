@@ -78,6 +78,14 @@ func accepted(w http.ResponseWriter, err error) {
 	w.WriteHeader(http.StatusAccepted)
 }
 
+func created(w http.ResponseWriter, err error) {
+	if err != nil {
+		log.Printf("ERR: Internal Server Error: %v\n", err)
+		internalServerError(w, err)
+	}
+	w.WriteHeader(http.StatusCreated)
+}
+
 func acceptedWithBody(w http.ResponseWriter, body interface{}, err error) {
 	if err != nil {
 		internalServerError(w, err)

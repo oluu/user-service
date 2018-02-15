@@ -1,36 +1,37 @@
 package handlers
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
-	"strings"
 	"testing"
 
+	"github.com/shinypotato/user-service/contract"
 	"github.com/shinypotato/user-service/data"
 	"github.com/shinypotato/user-service/service"
-
-	"github.com/shinypotato/user-service/contract"
+	"github.com/shinypotato/user-service/util"
 )
 
 type HandleTester func(
 	method string,
-	params url.Values,
+	path string,
+	params map[string]string,
 ) *httptest.ResponseRecorder
 
-// Given the current test runner and an http.Handler, generate a
-// HandleTester which will test its given input against the
-// handler.
+const (
+	envProtocol = "PROTOCOL"
+	envHost     = "HOST"
+	envPort     = "PORT"
+)
 
 func generateHandlerTester(t *testing.T, handleFunc http.Handler) HandleTester {
-	// Given a method type ("GET", "POST", etc) and
-	// parameters, serve the response against the handler and
-	// return the ResponseRecorder.
-
-	return func(method string, params url.Values) *httptest.ResponseRecorder {
-		req, err := http.NewRequest(method, "", strings.NewReader(params.Encode()))
+	return func(method, path string, values map[string]string) *httptest.ResponseRecorder {
+		jsonValue, _ := json.Marshal(values)
+		req, err := http.NewRequest(method, path, bytes.NewBuffer(jsonValue))
 		if err != nil {
 			t.Errorf("%v", err)
 		}
@@ -77,11 +78,23 @@ func getMockRepository(getUserErr, createUserErr, updateUserErr, deleteUserErr b
 	return repo
 }
 
+func buildURL(path string, queryPairs ...string) string {
+	baseURL := fmt.Sprintf("%s://%s:%d", util.GetEnvStringOrDefault(envProtocol, "http"), util.GetEnvString(envHost), util.GetEnvInt(envPort))
+	if queryPairs != nil && len(queryPairs) > 0 {
+		qs := url.Values{}
+		for i := 0; i+1 < len(queryPairs); i += 2 {
+			qs.Set(queryPairs[i], queryPairs[i+1])
+		}
+		return baseURL + path + "?" + qs.Encode()
+	}
+	return baseURL + path
+}
+
 func TestGetUser(t *testing.T) {
 	svc := getMockService(getMockRepository(false, false, false, false))
-	handler := GetUser(svc)
+	handler := routeTraffic(svc) //GetUser(svc)
 	test := generateHandlerTester(t, handler)
-	w := test(http.MethodGet, url.Values{})
+	w := test(http.MethodGet, buildURL(contract.GetUser, "id", "123"), nil)
 	if expected, actual := http.StatusOK, w.Code; expected != actual {
 		t.Errorf("Wrong status code returned: expected %v, actual %v", expected, actual)
 	}
@@ -97,9 +110,9 @@ func TestGetUser(t *testing.T) {
 
 func TestCreateUser(t *testing.T) {
 	svc := getMockService(getMockRepository(false, false, false, false))
-	handler := CreateUser(svc)
+	handler := routeTraffic(svc) //CreateUser(svc)
 	test := generateHandlerTester(t, handler)
-	w := test(http.MethodPost, url.Values{})
+	w := test(http.MethodPost, buildURL(contract.PostUser), nil)
 	if expected, actual := http.StatusCreated, w.Code; expected != actual {
 		t.Errorf("Wrong status code returned: expected %v, actual %v", expected, actual)
 	}
@@ -107,10 +120,10 @@ func TestCreateUser(t *testing.T) {
 
 func TestUpdateUser(t *testing.T) {
 	svc := getMockService(getMockRepository(false, false, false, false))
-	handler := UpdateUser(svc)
+	handler := routeTraffic(svc) //UpdateUser(svc)
 	test := generateHandlerTester(t, handler)
-	w := test(http.MethodPut, url.Values{})
-
+	values := map[string]string{"email": "testpotato@shinypotato.com"}
+	w := test(http.MethodPut, buildURL(contract.PutUser, "id", "123"), values)
 	if expected, actual := http.StatusAccepted, w.Code; expected != actual {
 		t.Errorf("Wrong status code returned: expected %v, actual %v", expected, actual)
 	}
@@ -118,9 +131,9 @@ func TestUpdateUser(t *testing.T) {
 
 func TestDeleteUser(t *testing.T) {
 	svc := getMockService(getMockRepository(false, false, false, false))
-	handler := DeleteUser(svc)
+	handler := routeTraffic(svc) //DeleteUser(svc)
 	test := generateHandlerTester(t, handler)
-	w := test(http.MethodDelete, url.Values{})
+	w := test(http.MethodDelete, buildURL(contract.DeleteUser, "id", "123"), nil)
 	if expected, actual := http.StatusAccepted, w.Code; expected != actual {
 		t.Errorf("Wrong status code returned: expected %v, actual %v", expected, actual)
 	}

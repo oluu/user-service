@@ -49,7 +49,7 @@ func CreateUser(svc *service.UserService, w http.ResponseWriter, r *http.Request
 	}
 	id, err := svc.CreateUser(req)
 	w.Header().Set("Location", id)
-	accepted(w, err)
+	created(w, err)
 }
 
 // UpdateUser ...

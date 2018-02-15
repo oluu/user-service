@@ -69,5 +69,5 @@ func (svc *UserService) publishMessage(topic string, data interface{}) error {
 		log.Printf("ERR: An error occurred while marshaling data. err: %v", err)
 		return err
 	}
-	return svc.producer.Publish("user-update", message)
+	return svc.producer.Publish(topic, message)
 }

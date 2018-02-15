@@ -1,0 +1,9 @@
+#!/bin/bash
+# Compile and run the service
+set -e
+scriptpath="$(cd $(dirname $([ -L ${BASH_SOURCE[0]} ] && readlink ${BASH_SOURCE[0]} || echo ${BASH_SOURCE[0]})) && pwd -P)"
+cd $scriptpath/..
+
+eval "$(cat $scriptpath/../.env | sed -e 's/^/export /')"
+go build -v -o app.o
+./app.o "$@"

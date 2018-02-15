@@ -7,16 +7,19 @@ import (
 )
 
 // InitMessaging ...
-func InitMessaging(topics []string) (*nsq.Producer, *nsq.Consumer) {
+func InitMessaging(topics []string) (*nsq.Producer, []*nsq.Consumer) {
 	config := nsq.NewConfig()
 	producer, err := nsq.NewProducer("127.0.0.1:4150", config)
 	if err != nil {
 		log.Fatal(err)
 	}
-	consumer, err := nsq.NewConsumer("user", "default", config)
-	if err != nil {
-		log.Fatal(err)
+	consumers := make([]*nsq.Consumer, len(topics))
+	for i, topic := range topics {
+		consumers[i], err = nsq.NewConsumer(topic, "default", config)
+		if err != nil {
+			log.Fatal(err)
+		}
+		consumers[i].ChangeMaxInFlight(100)
 	}
-	consumer.ChangeMaxInFlight(200)
-	return producer, consumer
+	return producer, consumers
 }

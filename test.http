@@ -1,0 +1,31 @@
+### CREATE USER /user ###
+POST http://localhost:3000/user
+X-Request-ID: 123
+X-Client-ID: 123
+Content-Type: application/json
+
+{
+    "email": "willtodd03@gmail.com",
+    "firstName": "William",
+    "lastName": "Todd"
+}
+
+### GET USER /user?id=123 ###
+GET http://localhost:3000/user?id=7bb92740-e8a6-460d-ba3a-54a2530f76d7
+X-Request-ID: 123
+X-Client-ID: 123
+Content-Type: application/json
+
+{
+
+}
+
+### DELETE USER /user?id=123 ###
+DELETE http://localhost:3000/user?id=7bb92740-e8a6-460d-ba3a-54a2530f76d7
+X-Request-ID: 123
+X-Client-ID: 123
+Content-Type: application/json
+
+{
+
+}

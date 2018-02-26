@@ -1,4 +1,0 @@
-#!/bin/bash
-
-docker build -t user-service .
-docker run --publish 8080:8080 --name user-service --rm user-service

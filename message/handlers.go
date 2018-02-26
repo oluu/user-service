@@ -11,10 +11,16 @@ import (
 )
 
 // InitHandlers ...
-func InitHandlers(consumer *nsq.Consumer, repository data.Repository) {
-	consumer.AddHandler(CreateUser(repository))
-	consumer.AddHandler(UpdateUser(repository))
-	consumer.AddHandler(DeleteUser(repository))
+func InitHandlers(consumers []*nsq.Consumer, repository data.Repository) {
+	consumers[0].AddHandler(CreateUser(repository))
+	consumers[1].AddHandler(UpdateUser(repository))
+	consumers[2].AddHandler(DeleteUser(repository))
+	for _, consumer := range consumers {
+		err := consumer.ConnectToNSQD("127.0.0.1:4150")
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
 }
 
 // CreateUser ...

@@ -1,0 +1,5 @@
+#!/bin/bash
+docker run --rm -it -v "$GOPATH":/gopath -v "$(pwd)":/app -e "GOPATH=/gopath" -w /app golang:1.9.4 sh -c 'CGO_ENABLED=0 go build -a --installsuffix cgo --ldflags="-s" -o ./app.o'
+docker build -t user-service .
+docker tag user-service:latest 698990599346.dkr.ecr.us-east-1.amazonaws.com/user-service
+docker push 698990599346.dkr.ecr.us-east-1.amazonaws.com/user-service

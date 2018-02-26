@@ -11,7 +11,7 @@
     "internal/streams"
   ]
   revision = "1303a32993a1242a6fb58dc497a3b8a54ffd257d"
-  source = "github.com/shinypotato/gocql"
+  source = "github.com/oluu/gocql"
 
 [[projects]]
   branch = "master"
@@ -23,14 +23,14 @@
   name = "github.com/gorilla/context"
   packages = ["."]
   revision = "1ea25387ff6f684839d82767c1733ff4d4d15d0a"
-  source = "github.com/shinypotato/gorilla-context"
+  source = "github.com/oluu/gorilla-context"
   version = "v1.1"
 
 [[projects]]
   name = "github.com/gorilla/mux"
   packages = ["."]
   revision = "53c1911da2b537f792e7cafcb446b05ffe33b996"
-  source = "github.com/shinypotato/gorilla-mux"
+  source = "github.com/oluu/gorilla-mux"
   version = "v1.6.1"
 
 [[projects]]
@@ -43,7 +43,7 @@
   name = "github.com/nsqio/go-nsq"
   packages = ["."]
   revision = "eee57a3ac4174c55924125bb15eeeda8cffb6e6f"
-  source = "github.com/shinypotato/go-nsq"
+  source = "github.com/oluu/go-nsq"
   version = "v1.0.7"
 
 [[projects]]
@@ -55,6 +55,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "040f16c30d700fa36736b9a3cdbd1f35b701fc27fee3c8977ef135708ebfef35"
+  inputs-digest = "c2efac6e2735dee0c4742b7d5892af8fb71430c91aefbe4d349e658dcddc44b9"
   solver-name = "gps-cdcl"
   solver-version = 1

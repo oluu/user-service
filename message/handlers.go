@@ -6,8 +6,8 @@ import (
 	"log"
 
 	nsq "github.com/nsqio/go-nsq"
-	"github.com/shinypotato/user-service/contract"
-	"github.com/shinypotato/user-service/data"
+	"github.com/oluu/user-service/contract"
+	"github.com/oluu/user-service/data"
 )
 
 // InitHandlers ...

@@ -35,16 +35,16 @@
 
 [[constraint]]
   name = "github.com/gorilla/mux"
-  source = "github.com/shinypotato/gorilla-mux"
+  source = "github.com/oluu/gorilla-mux"
 
 [[constraint]]
   name = "github.com/gorilla/context"
-  source = "github.com/shinypotato/gorilla-context"
+  source = "github.com/oluu/gorilla-context"
 
 [[constraint]]
   name = "github.com/gocql/gocql"
-  source = "github.com/shinypotato/gocql"
+  source = "github.com/oluu/gocql"
 
 [[constraint]]
   name="github.com/nsqio/go-nsq"
-  source="github.com/shinypotato/go-nsq"
+  source="github.com/oluu/go-nsq"

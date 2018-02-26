@@ -3,10 +3,10 @@ package main
 import (
 	"net/http"
 
-	"github.com/shinypotato/user-service/data"
-	"github.com/shinypotato/user-service/handlers"
-	"github.com/shinypotato/user-service/message"
-	"github.com/shinypotato/user-service/service"
+	"github.com/oluu/user-service/data"
+	"github.com/oluu/user-service/handlers"
+	"github.com/oluu/user-service/message"
+	"github.com/oluu/user-service/service"
 )
 
 const port = ":3000"

@@ -3,8 +3,8 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/shinypotato/user-service/contract"
-	"github.com/shinypotato/user-service/service"
+	"github.com/oluu/user-service/contract"
+	"github.com/oluu/user-service/service"
 )
 
 // RegisterHandlers ...

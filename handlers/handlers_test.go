@@ -10,10 +10,10 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/shinypotato/user-service/contract"
-	"github.com/shinypotato/user-service/data"
-	"github.com/shinypotato/user-service/service"
-	"github.com/shinypotato/user-service/util"
+	"github.com/oluu/user-service/contract"
+	"github.com/oluu/user-service/data"
+	"github.com/oluu/user-service/service"
+	"github.com/oluu/user-service/util"
 )
 
 type HandleTester func(

@@ -1,6 +1,6 @@
 package data
 
-import "github.com/shinypotato/user-service/contract"
+import "github.com/oluu/user-service/contract"
 
 // MockRepository ...
 type MockRepository struct {

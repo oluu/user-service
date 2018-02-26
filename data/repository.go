@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/shinypotato/user-service/contract"
+	"github.com/oluu/user-service/contract"
 )
 
 const dataAccessErr = "Data access request for %s failed"

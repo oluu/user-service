@@ -5,7 +5,7 @@ import (
 	"sync"
 
 	"github.com/gocql/gocql"
-	"github.com/shinypotato/user-service/util"
+	"github.com/oluu/user-service/util"
 )
 
 const (
